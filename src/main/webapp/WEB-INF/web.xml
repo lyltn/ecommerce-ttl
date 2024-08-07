@@ -15,5 +15,16 @@
 		<!-- Other taglib configurations -->
 
 	</jsp-config>
-
+	
+	<servlet>
+    <servlet-name>CliAddImgPro</servlet-name>
+    <servlet-class>controller.client.CliAddImgPro</servlet-class>
+    <multipart-config>
+        <max-file-size>16177215</max-file-size>
+        <max-request-size>2147483648</max-request-size>
+        <file-size-threshold>0</file-size-threshold>
+    </multipart-config>
+   </servlet>
+	
+	
 </web-app>

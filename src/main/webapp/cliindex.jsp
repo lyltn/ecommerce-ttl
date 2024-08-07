@@ -102,8 +102,8 @@
 					        </a><!--//nav-link-->
 					        <div id="submenu-1" class="collapse submenu submenu-1 " data-bs-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
-							        <li class="submenu-item"><a class="submenu-link " href="clilistproduct.jsp">List Product</a></li>
-							        <li class="submenu-item"><a class="submenu-link" href="cliaddproduct.jsp">Add Product</a></li>
+							        <li class="submenu-item"><a class="submenu-link " href="CliAllProduct">List Product</a></li>
+							        <li class="submenu-item"><a class="submenu-link" href="CliAddProduct">Add Product</a></li>
 					
 							        
 							        

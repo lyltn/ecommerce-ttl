@@ -212,52 +212,61 @@
 			        <div class="tab-pane fade show active" id="orders-active" role="tabpanel" aria-labelledby="orders-active-tab">
 			    
 			    <div class="row g-4">
-
-				    <div class="col-6 col-md-4 col-xl-3 col-xxl-2">
-					    <div class="app-card app-card-doc shadow-sm  h-100">
-						    <div class="app-card-thumb-holder p-3">
-							    <div class="app-card-thumb">
-	                                <img class="thumb-image" src="assets/images/doc-thumb-1.jpg" alt="">
-	                            </div>
-	                             <a class="app-card-link-mask" href="#file-link"></a>
-						    </div>
-						    <div class="app-card-body p-3 has-card-actions">
-							    
-							    <h4 class="app-doc-title truncate mb-1"><a href="#file-link">Image lorem ipsum dolor sit amet</a></h4>
-							    <div class="app-doc-meta">
-								    <ul class="list-unstyled mb-0">
-									    <li class="mb-2"><span class="app-doc-title text-danger">35000 </span> vnd</li>
-									    <li class="d-flex">
-											<div class="d-flex mt-1">
-												<i class="fa fa-star text-warning"></i>
-												<i class="fa fa-star text-warning"></i>
-												<i class="fa fa-star text-warning"></i>
-												<i class="fa fa-star text-warning"></i>
-												<i class="fa fa-star "></i>
-											</div>
-											<div class="ms-1 app-doc-title">4.5</div>
-										</li>
-								    </ul>
-							    </div><!--//app-doc-meta-->
-							    <div class="app-card-actions">
-								    <div class="dropdown">
-									    <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown" aria-expanded="false">
-										    <i class="bi bi-three-dots-vertical"></i>
-									    </div><!--//dropdown-toggle-->
-									    <ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="#"><i class="bi bi-eye-slash me-1"></i> Hide</a></li>
-											<li><hr class="dropdown-divider"></li>
-											<li><a class="dropdown-item" href="#"><i class="bi bi-pencil me-1"></i> Edit</a></li>
-	                                        
-										
-										</ul>
-								    </div><!--//dropdown-->
-						        </div><!--//app-card-actions-->		    
-						    </div><!--//app-card-body-->
-						</div><!--//app-card-->
-				    </div><!--//col-->
+					
+					<c:forEach items="${productList}" var="product" varStatus="status">
+					    <c:set var="price" value="${priceList[status.index]}" />
+					
+					    <div class="col-6 col-md-4 col-xl-3 col-xxl-2">
+					        <div class="app-card app-card-doc shadow-sm h-100">
+					            <div class="app-card-thumb-holder p-3">
+					                <div class="app-card-thumb">
+					                    <img class="thumb-image" src="${pageContext.request.contextPath}/ImageServlet?id=${product.id}" alt="">
+					                </div>
+					                <a class="app-card-link-mask" href="#file-link"></a>
+					            </div>
+					            <div class="app-card-body p-3 has-card-actions">
+					                <h4 class="app-doc-title truncate mb-1">
+					                    <a href="#file-link">${product.name}</a>
+					                </h4>
+					                <div class="app-doc-meta">
+					                    <ul class="list-unstyled mb-0">
+					                        <li class="mb-2">
+					                            <span class="app-doc-title text-danger">${price}</span> vnd
+					                        </li>
+					                        <li class="d-flex">
+					                            <div class="d-flex mt-1">
+					                                <i class="fa fa-star text-warning"></i>
+					                                <i class="fa fa-star text-warning"></i>
+					                                <i class="fa fa-star text-warning"></i>
+					                                <i class="fa fa-star text-warning"></i>
+					                                <i class="fa fa-star"></i>
+					                            </div>
+					                            <div class="ms-1 app-doc-title">4.5</div>
+					                        </li>
+					                    </ul>
+					                </div><!--//app-doc-meta-->
+					                <div class="app-card-actions">
+					                    <div class="dropdown">
+					                        <div class="dropdown-toggle no-toggle-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+					                            <i class="bi bi-three-dots-vertical"></i>
+					                        </div><!--//dropdown-toggle-->
+					                        <ul class="dropdown-menu">
+					                            <li><a class="dropdown-item" href="#"><i class="bi bi-eye-slash me-1"></i> Hide</a></li>
+					                            <li><hr class="dropdown-divider"></li>
+					                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil me-1"></i> Edit</a></li>
+					                        </ul>
+					                    </div><!--//dropdown-->
+					                </div><!--//app-card-actions-->
+					            </div><!--//app-card-body-->
+					        </div><!--//app-card-->
+					    </div><!--//col-->
+					</c:forEach>
 
 			    </div><!--//row-->
+			    
+			    
+			    
+			    
 			</div>
 
 			<div class="tab-pane fade" id="orders-hide" role="tabpanel" aria-labelledby="orders-hide-tab">

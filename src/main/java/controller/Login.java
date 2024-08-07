@@ -29,19 +29,20 @@ public class Login extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String name = request.getParameter("user-name");
         String pass = request.getParameter("password");
+        System.out.println(name + " " + pass);
 		Dao dao = new Dao();
 		Vector user = dao.geUser(name, pass);
-		
-		if(user!=null && (int)user.get(8)==1) {
+		if(user!=null && (int)user.get(9)==1) {
 			Vector<Vector> role = dao.geRoleOfUser((int)user.get(0));
 			System.out.println(user);
+			System.out.println("role nè : "+role);
 			javax.servlet.http.HttpSession session = request.getSession();
 			session.removeAttribute("idUser");
 			session.setAttribute("idUser", user.get(0));
 			int slrole = 0;
 			for (Vector vt : role) {
 				if((int)vt.get(2)==1 && vt.get(1).equals("customer")) {
-					slrole +=1;
+					slrole +=1; 	
 				}else if((int)vt.get(2)==1 && vt.get(1).equals("client")) {
 					slrole += 1;
 				}else if((int)vt.get(2)==1 && vt.get(1).equals("admin")) {

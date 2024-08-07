@@ -35,6 +35,7 @@
 	Vector listB = dao.getBrandOfShop(request);
 	Vector listC = dao.getCategoryOfShop(request);
 	Vector listS = dao.getSex();
+	System.out.println(listB);
 	%>
 	<header class="app-header fixed-top">
 		<div class="app-header-inner">
@@ -243,14 +244,14 @@
 									<div class="app-card app-card-settings shadow-sm p-4">
 
 										<div class="app-card-body">
-											<form id="form1" class="settings-form" action="CliAddProduct" method="post"
-											>
-												<div class="mb-3 row">
-													<div class="col-5">
-														<label for="setting-input-2" class="form-label">Name</label>
-														<input type="text" name="name" class="form-control"
+											<form id="form2" action="CliAddImgPro" method="post"  enctype="multipart/form-data">
+											
+											<div class="mb-3 row">
+												<div class="col-5">
+													<label for="setting-input-2" class="form-label">Name</label>
+													<input type="text" name="name" class="form-control"
 															id="setting-input-2" placeholder="name product" required>
-													</div>
+												</div>
 													<div class="col-2">
 														<label for="setting-input-2" class="form-label">Brand</label>
 														<select name="brand" class="form-select">
@@ -312,17 +313,16 @@
 
 													
 												</div>
+											
+												<div class="w-100 align-items-center col-7 d-flex me-5">
+														<label for="setting-input-3" style="width: 10%" class=" form-label pt-2 me-2 ">Images:</label>
+														<input class="form-control" type="file" name="images"
+															accept="image/*" multiple>
+												</div>
+	
+												<input class="btn app-btn-primary" type="submit" value="Add Product">
 											</form>
-											<form id="form2" action="CliAddImgPro" method="post"  enctype="multipart/form-data">
-											<div class="col-7 d-flex me-5">
-														<label for="setting-input-3" class="form-label pt-2 me-2 ">Images:</label>
-														<input class="form-control" type="file" name="imageFiles"
-															multiple accept="image/*">
-													</div></form>
-											<div class="col-2">
-														<button onclick="submitForms()" type="submit" class="btn app-btn-primary ">Add
-															Product</button>
-													</div>
+							
 											<c:set var="signal" value="${requestScope.signal}" />
 											<c:if test="${not empty signal}">
 
@@ -349,38 +349,50 @@
 									<div class="app-card app-card-settings shadow-sm p-4">
 
 										<div class="app-card-body">
-											<form class="settings-form">
+											<form action="CliAddQuantity" method="post" class="settings-form">
 												<div class=" mb-3 row ">
 													<div class="col-5">
 														<label for="setting-input-2" class="form-label">Product</label>
-														<select class="form-select">
-															<option selected="" value="option-1">All</option>
-															<option value="option-2">Text file</option>
+														<select class="form-select"  name="productid" >
+															<c:forEach var="pro" items="${listpro}" >
+																<option value="${pro.id}">${pro.name }</option>
+															</c:forEach>
+
 														</select>
 													</div>
 													<div class="col-1">
 														<label for="setting-input-2" class="form-label">Size</label>
-														<input type="text" class="form-control"
+														<input name="size" type="text" class="form-control"
 															id="setting-input-2" required>
 													</div>
 													<div class="col-2">
 														<label for="setting-input-2" class="form-label">Color</label>
-														<input type="text" class="form-control"
+														<input name="color" type="text" class="form-control"
 															id="setting-input-2" required>
 													</div>
 													<div class="col-1">
 														<label for="setting-input-2" class="form-label">Quantity</label>
-														<input type="number" class="form-control"
+														<input name="quantity" type="number" class="form-control"
 															id="setting-input-2" required>
 													</div>
 													<div class="col-3">
 														<label for="setting-input-2" class="form-label">Price</label>
-														<input type="number" class="form-control"
+														<input name="price" type="number" class="form-control"
 															id="setting-input-2" placeholder="vnd" required>
 													</div>
 												</div>
 												<button type="submit" class="btn app-btn-primary ">Add
 													Quantity</button>
+												<% if (request.getParameter("signal")== null) { %>
+												    <div style="display: none" class=" alert alert-info">
+												        <%= request.getParameter("signal") %>
+												    </div>
+									
+												<% }else {%>
+													<div  class=" alert alert-info">
+												        <%= request.getParameter("signal") %>
+												    </div>
+												<% }%>
 										</div>
 										</form>
 									</div>
